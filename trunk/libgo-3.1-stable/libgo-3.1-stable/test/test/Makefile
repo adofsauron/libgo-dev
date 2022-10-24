@@ -11,23 +11,23 @@ pg_cpu.t: pg_cpu.o
 	@echo "LD $@"
 
 pg_cpu.o: cpu.cpp
-	@$(CC) $(CFLAGS) -pg -c $^ -I../../src -I../../src/linux -o $@
+	@$(CC) $(CFLAGS) -pg -c $^ -I../../libgo -I../../src/linux -o $@
 	@echo "MK $@"
 
 s_hiredis.t: hiredis.o
 	@$(CC) $(CFLAGS) $^ -o $@ ${LINK} -lhiredis -llibgo -static -static-libgcc -static-libstdc++
 	@echo "LD $@"
 
-hiredis.t: hiredis.o
-	@$(CC) $(CFLAGS) $^ -o $@ ${LINK} -lhiredis -llibgo -ldl
-	@echo "LD $@"
+#hiredis.t: hiredis.o
+#	@$(CC) $(CFLAGS) $^ -o $@ ${LINK} -lhiredis -llibgo -ldl
+#	@echo "LD $@"
 
 %.t: %.o
-	@$(CC) $(CFLAGS) $^ -o $@ ${LINK} -L../../src -llibgo -ldl
+	@$(CC) $(CFLAGS) $^ -o $@ ${LINK} -L../../libgo -llibgo -ldl
 	@echo "LD $@"
 
 .cpp.o:
-	@$(CC) $(CFLAGS) -c $^ -I../../src -I../../src/linux -o $@
+	@$(CC) $(CFLAGS) -c $^ -I../../libgo -I../../src/linux -o $@
 	@echo "MK $@"
 
 .PHONY: clean

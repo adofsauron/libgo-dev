@@ -1,3 +1,4 @@
+#if 0
 #include <hiredis/hiredis.h>
 #include "coroutine.h"
 #include <stdio.h>
@@ -47,7 +48,14 @@ int main()
     }
     printf("go\n");
     while (!g_Scheduler.IsEmpty())
-        g_Scheduler.Run();
+        g_Scheduler.Start();
     printf("end\n");
     return 0;
+}
+
+#endif
+
+int main()
+{
+	return 0;
 }
